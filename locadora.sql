@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `filme` (
   `nome` varchar(30) NOT NULL,
   `valor` float NOT NULL,
   PRIMARY KEY (`filmeId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `filme`
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `copia` (
   `filmeId` smallint(6) NOT NULL,
   PRIMARY KEY (`copiaId`),
   FOREIGN KEY (filmeId) REFERENCES filme(filmeId)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `copia`
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `nome` varchar(50) NOT NULL,
   `endereco` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8;
 
 --
 -- Extraindo dados da tabela `cliente`
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   `situacao` tinyint(1) NOT NULL,
   PRIMARY KEY (`pedidoId`),
   FOREIGN KEY (clienteId) REFERENCES cliente(clienteId)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `pedido`
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `alocacao` (
   PRIMARY KEY (`alocacaoId`),
   FOREIGN KEY (pedidoId) REFERENCES pedido(pedidoId),
   FOREIGN KEY (copiaId) REFERENCES copia(copiaId)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `alocacao`
