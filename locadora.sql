@@ -29,74 +29,52 @@ USE locadora;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `estado`
+-- Estrutura da tabela `filme`
 --
 
-CREATE TABLE IF NOT EXISTS `estado` (
-  `estadoId` smallint(6) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(2) NOT NULL,
-  PRIMARY KEY (`estadoId`)
+CREATE TABLE IF NOT EXISTS `filme` (
+  `filmeId` smallint(6) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(30) NOT NULL,
+  `valor` float NOT NULL,
+  PRIMARY KEY (`filmeId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Extraindo dados da tabela `estado`
+-- Extraindo dados da tabela `filme`
 --
 
-INSERT INTO `estado` (`estadoId`, `nome`) VALUES
-(1, 'RS'),
-(2, 'SC'),
-(3, 'PR'),
-(4, 'SP'),
-(5, 'RJ');
+INSERT INTO `filme` (`filmeId`, `nome`, `valor`) VALUES
+(1, 'Toy Story', 9.50),
+(2, 'Missão Impossível', 9.00),
+(3, 'Atividade Paranormal', 8.00),
+(4, 'Forest Gump', 8.00),
+(5, 'Gente Grande 2', 11.50);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cidade`
+-- Estrutura da tabela `copia`
 --
 
-CREATE TABLE IF NOT EXISTS `cidade` (
-  `cidadeId` smallint(6) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(30) NOT NULL,
-  `estadoId` smallint(6) NOT NULL,
-  PRIMARY KEY (`cidadeId`),
-  FOREIGN KEY (estadoId) REFERENCES estado(estadoId)
+CREATE TABLE IF NOT EXISTS `copia` (
+  `copiaId` smallint(6) NOT NULL AUTO_INCREMENT,
+  `filmeId` smallint(6) NOT NULL,
+  PRIMARY KEY (`copiaId`),
+  FOREIGN KEY (filmeId) REFERENCES filme(filmeId)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Extraindo dados da tabela `cidade`
+-- Extraindo dados da tabela `copia`
 --
 
-INSERT INTO `cidade` (`cidadeId`, `nome`, estadoId) VALUES
-(1, 'Porto Alegre', 1),
-(2, 'Florionópolis', 2),
-(3, 'Curitiba', 3),
-(4, 'São Paulo', 4),
-(5, 'Rio de Janeiro', 5);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `curso`
---
-
-CREATE TABLE IF NOT EXISTS `curso` (
-  `cursoId` smallint(6) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(30) NOT NULL,
-  `dataAbertura` varchar(11) NOT NULL,
-  PRIMARY KEY (`cursoId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
-
---
--- Extraindo dados da tabela `curso`
---
-
-INSERT INTO `curso` (`cursoId`, `nome`) VALUES
-(1, 'Engenharia Mecânica', '01/01/2001'),
-(2, 'Administração', '01/01/2002'),
-(3, 'Educação Física', '01/01/2003'),
-(4, 'Direito', '01/01/2004'),
-(5, 'Ciência da Computação', '01/01/2005');
+INSERT INTO `copia` (`copiaId`, `filmeId`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 1),
+(7, 2);
 
 -- --------------------------------------------------------
 
@@ -121,3 +99,54 @@ INSERT INTO `cliente` (`id`, `nome`, `endereco`) VALUES
 (3, 'Sirlei', 'Rua 3'),
 (4, 'Bianca', 'Rua 4'),
 (5, 'Carlos', 'Rua 5');
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pedido`
+--
+
+CREATE TABLE IF NOT EXISTS `pedido` (
+  `pedidoId` smallint(6) NOT NULL AUTO_INCREMENT,
+  `clienteId` smallint(6) NOT NULL,
+  `situacao` tinyint(1) NOT NULL,
+  PRIMARY KEY (`pedidoId`),
+  FOREIGN KEY (clienteId) REFERENCES cliente(clienteId)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Extraindo dados da tabela `pedido`
+--
+
+INSERT INTO `pedido` (`pedidoId`, `clienteId`, `situacao`) VALUES
+(1, 1, 0),
+(2, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `alocacao`
+--
+
+CREATE TABLE IF NOT EXISTS `alocacao` (
+  `alocacaoId` smallint(6) NOT NULL AUTO_INCREMENT,
+  `pedidoId` smallint(6) NOT NULL,
+  `copiaId` smallint(6) NOT NULL,
+  PRIMARY KEY (`alocacaoId`),
+  FOREIGN KEY (pedidoId) REFERENCES pedido(pedidoId),
+  FOREIGN KEY (copiaId) REFERENCES copia(copiaId)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Extraindo dados da tabela `alocacao`
+--
+
+INSERT INTO `alocacao` (`alocacaoId`, `pedidoId`, `copiaId`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 2, 4),
+(5, 2, 5);
+
+-- --------------------------------------------------------
