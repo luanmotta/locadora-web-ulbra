@@ -15,32 +15,32 @@
     <?php
     require("../conecta.inc.php");
 
-    $queryCursos = "
+    $queryClientes = "
       SELECT
-        cursoId,
+        id,
         nome,
-        dataAbertura
-      FROM curso
+        endereco
+      FROM cliente
     ;";
 
     $ok = conecta_bd() or die ("Nao foi possivel conectar-se ao servidor.");
-    $cursos = mysqli_query($ok, $queryCursos) or die ("Nao foi possivel consultar cursos.");
+    $clientes = mysqli_query($ok, $queryClientes) or die ("Nao foi possivel consultar clientes.");
 
-    print("<center><h2>Cursos</h2>");
+    print("<center><h2>Clientes</h2>");
     print("<table border='1' bordercolor='red'>");
     print("<tr><td><b>Id</td>");
     print("<td><b>Nome</td>");
-    print("<td><b>Data Abertura</td>");
+    print("<td><b>Endereco</td>");
     print("<td><b>Deletar</td><td><b>Alterar</td></tr>");
 
-    while ($row = mysqli_fetch_array($cursos)) {
-       $id = $row["cursoId"];
+    while ($row = mysqli_fetch_array($clientes)) {
+       $id = $row["clienteId"];
        $nome = $row["nome"];
-       $dataAbertura = $row["dataAbertura"];
+       $endereco = $row["endereco"];
 
        print("<tr><td>$id</td>");
        print("<td>$nome</td>");
-       print("<td>$dataAbertura</td>");
+       print("<td>$endereco</td>");
        print("<td><a href='deletar.php?id=$id'>Deletar</a></td>");
        print("<td><a href='alterar.php?id=$id'>Alterar</a></td></tr>");
     }
@@ -48,7 +48,7 @@
 
     ?>
     <hr>
-    <a href="inserir.php"><button>Inserir Curso</button></a>
+    <a href="inserir.php"><button>Inserir Cliente</button></a>
     <p><a href="../index.php">Voltar</a></p>
   </body>
 </html>

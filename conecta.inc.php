@@ -9,8 +9,8 @@
       /*
       Development:
       */
+      $link=mysqli_connect("localhost","username","password","locadora");
       if ($link)
-        $link=mysqli_connect("localhost","username","password","locadora");
         return($link);
       return(FALSE);
    }
