@@ -26,7 +26,7 @@ Id: <?php print($id)?>
 
 <br>Nome: <input type="text" name="nome_alter" value="<?php print($nome)?>">
 
-<br>Data Abertura: <input type="text" name="valor_alter" value="<?php print($valor)?>">
+<br>Valor: <input type="text" name="valor_alter" value="<?php print($valor)?>">
 
 <p><input type="submit" value="Alterar Dados">
 </form>
