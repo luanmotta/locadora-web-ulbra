@@ -1,6 +1,7 @@
 <?php
-	$estadoId=$_GET['estadoId_alter'];
+	$clienteId=$_GET['clienteId_alter'];
 	$nome_alter=$_GET['nome_alter'];
+	$endereco_alter=$_GET['endereco_alter'];
 
 	require("../conecta.inc.php");
 
@@ -9,13 +10,14 @@
 	$update_estado = "
 		UPDATE estado
 		SET
-			nome='$nome_alter'
-		WHERE estadoId='$estadoId'
+			nome='$nome_alter',
+			endereco='$endereco_alter'
+		WHERE clienteId='$clienteId'
 	;";
 
-	mysqli_query($ok, $update_estado) or die ("Nao foi possivel alterar dados do estado!");
+	mysqli_query($ok, $update_estado) or die ("Nao foi possivel alterar dados do cliente!");
 
-	print("Dados do estado <b>$nome_alter</b> alterados com sucesso!");
+	print("Dados do cliente <b>$nome_alter</b> alterados com sucesso!");
 
 ?>
 <p><a href="mostra.php">Mostrar</a>

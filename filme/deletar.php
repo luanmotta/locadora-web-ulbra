@@ -18,7 +18,7 @@
 	$nome=$linha["nome"];
 	$dataAbertura=$linha["dataAbertura"];
 
-	print("<h3>Deletando o estado:</h3><p>");
+	print("<h3>Deletando o filme:</h3><p>");
 	print("Id: $id<br>");
 	print("Nome: <b>$nome</b><br>");
 	print("Data Abertura: <b>$dataAbertura</b><br>");

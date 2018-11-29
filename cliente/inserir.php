@@ -4,9 +4,10 @@
 <tr><td align='center'>
 
 Nome: <input type="text" name="nome"><br>
+Endereco: <input type="text" name="endereco"><br>
 
 <br>
-<input type="submit" value="Inserir Estado">
+<input type="submit" value="Inserir Cliente">
 </td></tr>
 </table>
 </form>
