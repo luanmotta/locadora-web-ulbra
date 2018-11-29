@@ -5,11 +5,11 @@
 
 	$queryCliente = "
 		SELECT
-			id,
+			clienteId,
 			nome,
 			endereco
 		FROM cliente
-		WHERE id = '$id'
+		WHERE clienteId = '$id'
 	;";
 
 	$resultado1=mysqli_query($ok, $queryCliente) or die ("Nao foi possivel retornar dados do cliente!");

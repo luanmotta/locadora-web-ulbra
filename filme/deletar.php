@@ -21,7 +21,7 @@
 	print("<h3>Deletando o filme:</h3><p>");
 	print("Id: $id<br>");
 	print("Nome: <b>$nome</b><br>");
-	print("Data Abertura: <b>$valor</b><br>");
+	print("Valor: <b>$valor</b><br>");
 ?>
 <form action="confirma_deletar.php" method="get">
 <input type="hidden" name="filmeId_del" value="<?php print($id)?>">

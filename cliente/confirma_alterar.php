@@ -7,15 +7,15 @@
 
 	$ok = conecta_bd() or die ("Nao foi possivel conectar-se ao servidor.");
 
-	$update_estado = "
-		UPDATE estado
+	$update_cliente = "
+		UPDATE cliente
 		SET
 			nome='$nome_alter',
 			endereco='$endereco_alter'
 		WHERE clienteId='$clienteId'
 	;";
 
-	mysqli_query($ok, $update_estado) or die ("Nao foi possivel alterar dados do cliente!");
+	mysqli_query($ok, $update_cliente) or die ("Nao foi possivel alterar dados do cliente!");
 
 	print("Dados do cliente <b>$nome_alter</b> alterados com sucesso!");
 
