@@ -1,16 +1,19 @@
 <?php
    function conecta_bd()
    {
-      /*
-      Production:
-	    $link=mysqli_connect("localhost","root","","locadora");
-      */
+      
+	   //  $link=mysqli_connect("localhost","root","","locadora");
+      
 
       /*
       Development:
       */
-      $link=mysqli_connect("localhost","username","password","locadora");
-      if ($link)
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "locadora";
+      $link=mysqli_connect($servername, $username, $password, $dbname);
+        if ($link)
         return($link);
       return(FALSE);
    }
