@@ -17,7 +17,7 @@
 
     $queryClientes = "
       SELECT
-        id,
+        clienteId,
         nome,
         endereco
       FROM cliente

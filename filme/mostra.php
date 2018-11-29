@@ -34,7 +34,7 @@
     print("<td><b>Deletar</td><td><b>Alterar</td></tr>");
 
     while ($row = mysqli_fetch_array($filmes)) {
-       $id = $row["clienteId"];
+       $id = $row["filmeId"];
        $nome = $row["nome"];
        $valor = $row["valor"];
 

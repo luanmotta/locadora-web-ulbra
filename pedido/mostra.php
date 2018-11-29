@@ -54,7 +54,7 @@
          } ?>
       </td>
       <td><a href='confirma_deletar.php?pedidoId=<?php echo($pedidoId) ?>'>Deletar</a></td>
-      <td><a href='finalizar.php?pedidoId=<?php echo($pedidoId) ?>'>Finalizar</a></td>
+      <td><a href='finalizar.php?pedidoId=<?php echo($pedidoId) ?>'>Visualizar</a></td>
     </tr>
     <?php 
     }

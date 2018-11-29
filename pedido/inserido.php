@@ -1,6 +1,7 @@
 <?php
 $cliente=$_POST['cliente'];
 $filmes=$_POST['filmes'];
+date_default_timezone_set("Brazil/East");
 
 if ($cliente == '0' or count($filmes) == 0 )
 	print(count($filmes));
@@ -20,7 +21,7 @@ else
 	foreach ($filmes as $key => $value) {
 		mysqli_query($ok, "insert into alocacao (pedidoId, filmeId) values ('$newId', '$value')");
 	}
-	print("Pedido inserido com sucesso: $nome");
+	print("Pedido inserido com sucesso");
 }
 ?>
 <p><a href="inserir.php">Voltar</a>
