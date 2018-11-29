@@ -3,28 +3,28 @@
 	require("../conecta.inc.php");
 	$ok = conecta_bd() or die ("Nao foi possivel conectar-se ao servidor.");
 
-	$queryCurso = "
+	$queryFilme = "
 		SELECT
-			cursoId,
+			filmeId,
 			nome,
-			dataAbertura
-		FROM curso
-		WHERE cursoId = '$id'
+			valor
+		FROM filme
+		WHERE filmeId = '$id'
 	;";
 
-	$resultado1=mysqli_query($ok, $queryCurso) or die ("Nao foi possivel retornar dados do curso!");
+	$resultado1=mysqli_query($ok, $queryFilme) or die ("Nao foi possivel retornar dados do filme!");
 	$linha=mysqli_fetch_array($resultado1);
-	$cursoId=$linha["cursoId"];
+	$filmeId=$linha["filmeId"];
 	$nome=$linha["nome"];
-	$dataAbertura=$linha["dataAbertura"];
+	$valor=$linha["valor"];
 
 	print("<h3>Deletando o filme:</h3><p>");
 	print("Id: $id<br>");
 	print("Nome: <b>$nome</b><br>");
-	print("Data Abertura: <b>$dataAbertura</b><br>");
+	print("Data Abertura: <b>$valor</b><br>");
 ?>
 <form action="confirma_deletar.php" method="get">
-<input type="hidden" name="cursoId_del" value="<?php print($id)?>">
+<input type="hidden" name="filmeId_del" value="<?php print($id)?>">
 <br><input type="submit" value="Deletar Dados">
 </form>
 <p><a href="mostra.php">Cancelar e voltar</a>

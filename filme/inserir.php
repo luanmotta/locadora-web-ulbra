@@ -5,10 +5,10 @@
 
 Nome: <input type="text" name="nome"><br>
 
-Data Abertura: <input type="text" name="dataAbertura"><br>
+Valor: <input type="number" name="valor"><br>
 
 <br>
-<input type="submit" value="Inserir Curso">
+<input type="submit" value="Inserir Filme">
 </td></tr>
 </table>
 </form>
