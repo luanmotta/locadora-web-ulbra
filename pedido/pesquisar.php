@@ -1,11 +1,16 @@
 <?php
     require("../conecta.inc.php");
     $nome = $_GET["pesquisar"];
-      $queryPedidos = "
-      SELECT c.nome, p.situacao, p.pedidoId  FROM 
+    $situacao = $_GET["situacao"];
+    $sql = "";
+    if ($situacao == 0 || $situacao == 1){
+        $sql = "and p.situacao = $situacao";
+    }
+    $queryPedidos = "
+    SELECT c.nome, p.situacao, p.pedidoId  FROM 
 	pedido p inner join 
     cliente c on p.clienteId = c.clienteId
-        WHERE c.nome LIKE '%$nome%'
+    WHERE c.nome LIKE '%$nome%' $sql
       ;";
   
       $ok = conecta_bd() or die ("Nao foi possivel conectar-se ao servidor.");
