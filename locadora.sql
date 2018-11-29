@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `locadora`.`pedido` (
   `dataEntrega` VARCHAR(30) NULL,
   `situacao` TINYINT(1) NOT NULL,
   PRIMARY KEY (`pedidoId`),
-  INDEX `clienteId` (`clienteId` ASC) VISIBLE,
+  INDEX `clienteId` (`clienteId` ASC),
   CONSTRAINT `pedido_ibfk_1`
     FOREIGN KEY (`clienteId`)
     REFERENCES `locadora`.`cliente` (`clienteId`))
@@ -65,39 +65,22 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = latin1;
 
-
--- -----------------------------------------------------
--- Table `locadora`.`copia`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `locadora`.`copia` (
-  `copiaId` SMALLINT(6) NOT NULL AUTO_INCREMENT,
-  `filmeId` SMALLINT(6) NOT NULL,
-  PRIMARY KEY (`copiaId`),
-  INDEX `filmeId` (`filmeId` ASC) VISIBLE,
-  CONSTRAINT `copia_ibfk_1`
-    FOREIGN KEY (`filmeId`)
-    REFERENCES `locadora`.`filme` (`filmeId`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 8
-DEFAULT CHARACTER SET = latin1;
-
-
 -- -----------------------------------------------------
 -- Table `locadora`.`alocacao`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `locadora`.`alocacao` (
   `alocacaoId` SMALLINT(6) NOT NULL AUTO_INCREMENT,
   `pedidoId` SMALLINT(6) NOT NULL,
-  `copiaId` SMALLINT(6) NOT NULL,
+  `filmeId` SMALLINT(6) NOT NULL,
   PRIMARY KEY (`alocacaoId`),
-  INDEX `pedidoId` (`pedidoId` ASC) VISIBLE,
-  INDEX `copiaId` (`copiaId` ASC) VISIBLE,
+  INDEX `pedidoId` (`pedidoId` ASC),
+  INDEX `filmeId` (`filmeId` ASC),
   CONSTRAINT `alocacao_ibfk_1`
     FOREIGN KEY (`pedidoId`)
     REFERENCES `locadora`.`pedido` (`pedidoId`),
   CONSTRAINT `alocacao_ibfk_2`
-    FOREIGN KEY (`copiaId`)
-    REFERENCES `locadora`.`copia` (`copiaId`))
+    FOREIGN KEY (`filmeId`)
+    REFERENCES `locadora`.`filme` (`filmeId`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = latin1;

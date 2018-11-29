@@ -18,59 +18,61 @@
     require("../conecta.inc.php");
 
     $queryPedidos = "
-    SELECT c.nome, p.situacao, p.pedidoId  FROM 
-	pedido p inner join 
+    SELECT c.nome, p.situacao, p.pedidoId  FROM
+	pedido p inner join
     cliente c on p.clienteId = c.clienteId LIMIT 10
     ;";
 
     $ok = conecta_bd() or die ("Nao foi possivel conectar-se ao servidor.");
     $pedidos = mysqli_query($ok, $queryPedidos) or die ("Nao foi possivel consultar pedidos.");
     ?>
-  <h2>Pedidos</h2>
-  <div style="display: flex; justify-content: flex-end">
-    <label style="float: right; margin-right: 5px" for="pesquisar">Pesquisar</label>
-    <input style="float: right" type="text" name="pesquisar" id="pesquisar">
-    <input id="btn_pesquisar" style="float: right; margin-left: 5px" type="button" value="Pesquisar">
+  <div style="margin: 0 auto; width: 80%; display: flex; align-items: center; flex-direction: column; text-align: center;">
+    <div>
+      <h2>Pedidos</h2>
+      <label for="pesquisar">Pesquisar</label>
+      <input style="margin-bottom: 10px;" type="text" name="pesquisar" id="pesquisar">
+      <input id="btn_pesquisar" type="button" value="Pesquisar">
+    </div>
+    <div>
+      <label for="pesquisar">Filtrar por:</label>
+      <select name="filtro" id="filtro">
+        <option value="-1">Selecione um filtro</option>
+        <option value="0">Pendente</option>
+        <option value="1">Pago</option>
+      </select>
+    </div>
+    <table id="table-result" style="margin-top: 10px" bordercolor='red'>
+      <th><b>Cliente</th>
+      <th><b>Situacao</th>
+      <th><b>Acoes</th>
+
+
+      <?php
+      while ($row = mysqli_fetch_array($pedidos)) {
+        $nome = $row["nome"];
+        $situacao = $row["situacao"];
+        $pedidoId = $row["pedidoId"];
+          ?>
+      <tr>
+        <td>
+          <?php echo($nome) ?>
+        </td>
+        <td>
+          <?php if ($situacao == 0){
+          echo("Pendente");
+          }else{
+            echo("Pago");
+          } ?>
+        </td>
+        <td><a href='deletar.php?pedidoId=<?php echo($pedidoId) ?>'>Deletar</a></td>
+        <td><a href='finalizar.php?pedidoId=<?php echo($pedidoId) ?>'>Visualizar</a></td>
+      </tr>
+      <?php
+      }
+      ?>
+    </table>
   </div>
-  <div style="display: flex; justify-content: flex-end; margin-top: 5px">
-    <label style="float: right; margin-right: 5px" for="pesquisar">Filtrar por:</label>
-    <select name="filtro" id="filtro">
-      <option value="-1">Selecione um filtro</option>
-      <option value="0">Pendente</option>
-      <option value="1">Pago</option>
-    </select>
-  </div>
 
-  <table id="table-result" bordercolor='red'>
-    <th><b>Cliente</th>
-    <th><b>Situacao</th>
-    <th><b>Acoes</th>
-
-
-    <?php 
-    while ($row = mysqli_fetch_array($pedidos)) {
-       $nome = $row["nome"];
-       $situacao = $row["situacao"];
-       $pedidoId = $row["pedidoId"];
-        ?>
-    <tr>
-      <td>
-        <?php echo($nome) ?>
-      </td>
-      <td>
-        <?php if ($situacao == 0){
-         echo("Pendente");
-        }else{
-          echo("Pago");
-         } ?>
-      </td>
-      <td><a href='deletar.php?pedidoId=<?php echo($pedidoId) ?>'>Deletar</a></td>
-      <td><a href='finalizar.php?pedidoId=<?php echo($pedidoId) ?>'>Visualizar</a></td>
-    </tr>
-    <?php 
-    }
-    ?>
-  </table>
   <hr>
   <a href="inserir.php"><button>Criar pedido</button></a>
   <p><a href="../index.php">Voltar</a></p>
