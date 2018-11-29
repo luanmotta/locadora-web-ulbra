@@ -5,6 +5,9 @@
     <title>Locadora</title>
   </head>
   <body>
+    <header>
+      <h1>Locadora</h1>
+    </header>
     <div class="main-container">
       <div class="center">
         <div class="pages">
@@ -18,8 +21,13 @@
 </html>
 
 <style>
+header {
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
 .main-container {
-  margin: 100px 3%;
+  margin: 80px 3%;
 }
 
 div {
